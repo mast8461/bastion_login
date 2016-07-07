@@ -1,18 +1,7 @@
 #!/bin/bash
-#This will setup a script that will help you log into the next gen bastions easier. 
-#This will move your current .ssh/config file to .ssh/config.bak and create a new one. 
 echo What is your sso username? 
 read SSO
 echo "#!/bin/bash
-#usage: 'bastion <region>'
-#Available regions: 
-#iad
-#dfw
-#ord
-#hkg
-#syd
-#lon3
-#lon5
 if [[ \$1 = iad ]]
 then
         REGION=iad3
@@ -56,7 +45,7 @@ else
 fi
 " > bastionlogin.sh
 chmod +x bastionlogin.sh
-mv ~/.ssh/config ~/.ssh/config.bak
+mv -i ~/.ssh/config ~/.ssh/config.bak
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
     ForwardX11Trusted yes
@@ -66,12 +55,6 @@ echo "Host cbast.dfw1.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
 
 Host cbast.ord1.corp.rackspace.net
     ForwardAgent yes
@@ -82,12 +65,6 @@ Host cbast.ord1.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
 
 Host cbast.hkg1.corp.rackspace.net
     ForwardAgent yes
@@ -98,12 +75,6 @@ Host cbast.hkg1.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
 
 Host cbast.iad3.corp.rackspace.net
     ForwardAgent yes
@@ -114,12 +85,6 @@ Host cbast.iad3.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
 
 Host cbast.ord1.corp.rackspace.net
     ForwardAgent yes
@@ -130,12 +95,6 @@ Host cbast.ord1.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
 
 Host cbast.syd2.corp.rackspace.net
     ForwardAgent yes
@@ -146,12 +105,6 @@ Host cbast.syd2.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
-    #
-    # Most techs run a terminal permanently open to the bastion
-    # which serves as the MUX socket; if you do not do this,
-    # uncomment the below to have the first MUX created tossed
-    # into the background instead (man ssh -> "-O ctl_cmd")
-    # ControlPersist 10h
 " >> ~/.ssh/config
 DIR=$(pwd)
 echo "alias bastion=$DIR/bastionlogin.sh" >> ~/.bashrc
