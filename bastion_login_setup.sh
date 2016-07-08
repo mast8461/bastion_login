@@ -107,6 +107,16 @@ Host cbast.syd2.corp.rackspace.net
     ControlPath ~/.ssh/master-%r@%h:%p
     TCPKeepAlive yes
     ServerAliveInterval 300
+    
+    Host *
+    ProxyCommand ssh -A cbast.dfw1.corp.rackspace.net 'nc %h %p'
+    ForwardX11Trusted yes
+    GSSAPIAuthentication no
+    StrictHostKeyChecking no
+    VerifyHostKeyDNS no
+    HashKnownHosts no
+    TCPKeepAlive yes
+    ServerAliveInterval 300
 " >> ~/.ssh/config
 source ~/.bashrc
 echo "Now run 'source ~/.bashrc'"
