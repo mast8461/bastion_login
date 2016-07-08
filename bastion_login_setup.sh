@@ -107,5 +107,5 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
-echo "$HOME/bastion_login/bastion_login.sh" >> ~/.bashrc
+echo "alias bastion=$HOME/bastion_login/bastion_login.sh" >> ~/.bashrc
 source ~/.bashrc
