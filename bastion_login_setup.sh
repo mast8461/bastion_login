@@ -1,5 +1,6 @@
 #!/bin/bash
 mkdir $HOME/bastion_login
+echo "alias bastion=$HOME/bastion_login/bastion_login.sh" >> ~/.bashrc
 echo What is your sso username? 
 read SSO
 echo "#!/bin/bash
@@ -107,5 +108,4 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
-echo "alias bastion=$HOME/bastion_login/bastion_login.sh" >> ~/.bashrc
 source ~/.bashrc
