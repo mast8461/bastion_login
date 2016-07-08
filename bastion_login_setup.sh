@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir $HOME/bastion_login
 echo What is your sso username? 
 read SSO
 echo "#!/bin/bash
@@ -43,8 +44,8 @@ else
         read -n1 s 2> /dev/null
         ssh $SSO@cbast.\$REGION.corp.rackspace.net
 fi
-" > bastion_login.sh
-chmod +x bastion_login.sh
+" > $HOME/bastion_login/bastion_login.sh
+chmod +x $HOME/bastion_login/bastion_login.sh
 mv -i ~/.ssh/config ~/.ssh/config.bak
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
@@ -106,6 +107,5 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
-DIR=$(pwd)
-echo "alias bastion=$DIR/bastion_login.sh" >> ~/.bashrc
+echo "$HOME/basiton_login/bastion_login.sh" >> ~/.bashrc
 source ~/.bashrc
