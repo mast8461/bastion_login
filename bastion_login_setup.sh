@@ -47,7 +47,7 @@ else
 fi
 " > $HOME/bastion_login/bastion_login.sh
 chmod +x $HOME/bastion_login/bastion_login.sh
-mv -i ~/.ssh/config ~/.ssh/config.bak
+mv -i ~/.ssh/config ~/.ssh/config.bak1
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
     ForwardX11Trusted yes
@@ -105,6 +105,16 @@ Host cbast.syd2.corp.rackspace.net
     User $SSO
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h:%p
+    TCPKeepAlive yes
+    ServerAliveInterval 300
+    
+    Host *
+    ProxyCommand ssh -A cbast.dfw1.corp.rackspace.net 'nc %h %p'
+    ForwardX11Trusted yes
+    GSSAPIAuthentication no
+    StrictHostKeyChecking no
+    VerifyHostKeyDNS no
+    HashKnownHosts no
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
