@@ -109,4 +109,4 @@ Host cbast.syd2.corp.rackspace.net
     ServerAliveInterval 300
 " >> ~/.ssh/config
 source ~/.bashrc
-echo Now run 'source ~/.bashrc"
+echo Now run 'source ~/.bashrc'"
