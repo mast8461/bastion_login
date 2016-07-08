@@ -47,7 +47,7 @@ else
 fi
 " > $HOME/bastion_login/bastion_login.sh
 chmod +x $HOME/bastion_login/bastion_login.sh
-mv -i ~/.ssh/config ~/.ssh/config.bak
+mv -i ~/.ssh/config ~/.ssh/config.bak1
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
     ForwardX11Trusted yes
