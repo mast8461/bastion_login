@@ -43,8 +43,8 @@ else
         read -n1 s 2> /dev/null
         ssh $SSO@cbast.\$REGION.corp.rackspace.net
 fi
-" > bastionlogin.sh
-chmod +x bastionlogin.sh
+" > bastion_login.sh
+chmod +x bastion_login.sh
 mv -i ~/.ssh/config ~/.ssh/config.bak
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
@@ -106,6 +106,6 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
-DIR=$(pwd)
-echo "alias bastion=$DIR/bastionlogin.sh" >> ~/.bashrc
+sudo updatedb
+echo "alias bastion=$(locate bastion_login.sh)" >> ~/.bashrc
 source ~/.bashrc
