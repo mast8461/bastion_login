@@ -1,6 +1,12 @@
 #!/bin/bash
-mkdir $HOME/bastion_login
-echo "alias bastion=$HOME/bastion_login/bastion_login.sh" >> ~/.bashrc
+mkdir $HOME/.bastion_login
+if [[ $(uname -s) = Darwin ]]
+then
+        OPEN=open; PRO=~/.bash_profile
+else
+        OPEN=xdg-open; PRO=~/.bashrc
+fi
+echo "alias bastion=$HOME/.bastion_login/bastion_login.sh" >> $PRO
 echo What is your sso username? 
 read SSO
 echo "#!/bin/bash
@@ -29,12 +35,6 @@ else
         REGION=dfw1
 fi
 
-if [[ $(uname -s) = Darwin ]]
-then
-        OPEN=open
-else
-        OPEN=xdg-open
-fi
 
 ssh $SSO@cbast.\$REGION.corp.rackspace.net
 RC=\$?; if [[ \$RC = 0 ]]; then
@@ -45,8 +45,8 @@ else
         read -n1 s 2> /dev/null
         ssh $SSO@cbast.\$REGION.corp.rackspace.net
 fi
-" > $HOME/bastion_login/bastion_login.sh
-chmod +x $HOME/bastion_login/bastion_login.sh
+" > $HOME/.bastion_login/bastion_login.sh
+chmod +x $HOME/.bastion_login/bastion_login.sh
 mv -i ~/.ssh/config ~/.ssh/config.bak1
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
@@ -118,5 +118,5 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
-source ~/.bashrc
-echo "Now run 'source ~/.bashrc'"
+source $PRO
+echo "Now run 'source $PRO'"
