@@ -11,7 +11,10 @@ read SSO
 echo Where is your bastion SSH key?
 read SSHKEY
 echo "#!/bin/bash
-if [[ \$1 = iad ]]
+if [[ -z "$1" ]]
+then 
+        REGION=dfw1
+elif [[ \$1 = iad ]]
 then
         REGION=iad3
 elif [[ \$1 = ord ]]
@@ -32,6 +35,20 @@ then
 elif [[ \$1 = syd ]]
 then
         REGION=syd2
+elif [[ \$1 = '--help' ]]
+then 
+        echo \"Usage: 
+'bastion' will log you into the dfw bastion. 
+'bastion <region>' will log you into the specified bastion. 
+Available regions: 
+iad, dfw, ord, hkg, syd, lon3, lon5\" ; exit
+elif [[ \$1 = '-h' ]]
+then 
+        ehco \"Usage: 
+'bastion' will log you into the dfw bastion. 
+'bastion <region>' will log you into the specified bastion. 
+Available regions: 
+iad, dfw, ord, hkg, syd, lon3, lon5\" ; exit
 else
         REGION=dfw1
 fi
