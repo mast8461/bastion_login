@@ -1,14 +1,15 @@
 #!/bin/bash
-mkdir $HOME/.bastion_login
+
 if [[ $(uname -s) = Darwin ]]
 then
         OPEN=open; PRO=~/.bash_profile
 else
         OPEN=xdg-open; PRO=~/.bashrc
 fi
-echo "alias bastion=$HOME/.bastion_login/bastion_login.sh" >> $PRO
 echo What is your sso username? 
 read SSO
+echo Where is your bastion SSH key?
+read SSHKEY
 echo "#!/bin/bash
 if [[ \$1 = iad ]]
 then
@@ -36,17 +37,17 @@ else
 fi
 
 
-ssh $SSO@cbast.\$REGION.corp.rackspace.net
+ssh $SSO@cbast.\$REGION.corp.rackspace.net -i $SSHKEY
 RC=\$?; if [[ \$RC = 0 ]]; then
         exit
 else
         \$OPEN https://rax.io/auth-\$REGION
         echo 'Authenticate then press [ENTER]'
         read -n1 s 2> /dev/null
-        ssh $SSO@cbast.\$REGION.corp.rackspace.net
+        ssh $SSO@cbast.\$REGION.corp.rackspace.net -i $SSHKEY
 fi
-" > $HOME/.bastion_login/bastion_login.sh
-chmod +x $HOME/.bastion_login/bastion_login.sh
+" > $HOME/.local/bin/bastion
+chmod +x $HOME/.local/bin/bastion
 mv -i ~/.ssh/config ~/.ssh/config.bak1
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
@@ -118,5 +119,4 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> ~/.ssh/config
-source $PRO
-echo "Now run 'source $PRO'"
+echo "Complete. Make sure '~/.local/bin/' is in your PATH"
