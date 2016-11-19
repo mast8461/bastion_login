@@ -2,9 +2,9 @@
 
 if [[ $(uname -s) = Darwin ]]
 then
-        OPEN=open; PRO=~/.bash_profile
+        OPEN=open
 else
-        OPEN=xdg-open; PRO=~/.bashrc
+        OPEN=xdg-open
 fi
 echo What is your sso username? 
 read SSO
@@ -41,14 +41,17 @@ ssh $SSO@cbast.\$REGION.corp.rackspace.net -i $SSHKEY
 RC=\$?; if [[ \$RC = 0 ]]; then
         exit
 else
-        \$OPEN https://rax.io/auth-\$REGION
+        $OPEN https://rax.io/auth-\$REGION
         echo 'Authenticate then press [ENTER]'
         read -n1 s 2> /dev/null
         ssh $SSO@cbast.\$REGION.corp.rackspace.net -i $SSHKEY
 fi
 " > $HOME/.local/bin/bastion
 chmod +x $HOME/.local/bin/bastion
-mv -i ~/.ssh/config ~/.ssh/config.bak1
+if [ ! -f ~/.ssh/config ]
+then :
+else mv -i ~/.ssh/config ~/.ssh/config.bak1
+fi
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
     ForwardX11Trusted yes
