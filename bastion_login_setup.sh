@@ -11,7 +11,8 @@ echo ""
 echo "SSO set as $SSO"
 echo ""
 echo ""
-read -p "Where is your bastion SSH key? Press ENTER for DEFAULT: ~/.ssh/id_rsa" SSHKEY
+echo "Where is your bastion SSH key? Press ENTER for DEFAULT: ~/.ssh/id_rsa" 
+read SSHKEY
 if [[ $SSHKEY = "" ]]
 then SSHKEY=$HOME/.ssh/id_rsa
 fi
@@ -19,7 +20,8 @@ echo ""
 echo "ssh key location set to $SSHKEY"
 echo ""
 echo ""
-read -p "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" STORE
+echo "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" 
+read STORE
 if [[ $STORE = "" ]]
 then STORE=$HOME/.local/bin/ 
 fi
