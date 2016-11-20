@@ -19,6 +19,7 @@ fi
 echo $STORE
 if [[ ! -d '$STORE' ]]
 then mkdir -p $STORE
+else echo wtf
 fi
 echo "#!/bin/bash
 if [[ -z '\$1' ]]
