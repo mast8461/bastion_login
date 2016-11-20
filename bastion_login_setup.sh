@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [[ $(uname -s) = Darwin ]]
 then
         OPEN=open
@@ -8,8 +7,11 @@ else
 fi
 echo What is your sso username? 
 read SSO
-echo Where is your bastion SSH key?
+echo Where is your bastion SSH key? ex. '~/.ssh/id_rsa'
 read SSHKEY
+if [[ ! -d '$HOME/.local/bin' ]]
+then mkdir -p $HOME/.local/bin
+fi
 echo "#!/bin/bash
 if [[ -z "$1" ]]
 then 
