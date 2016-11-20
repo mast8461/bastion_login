@@ -7,10 +7,18 @@ else
 fi
 echo What is your sso username? 
 read SSO
-echo Where is your bastion SSH key? ex. '~/.ssh/id_rsa'
+echo Where is your bastion SSH key? DEFAULT: ~/.ssh/id_rsa
 read SSHKEY
-if [[ ! -d '$HOME/.local/bin' ]]
-then mkdir -p $HOME/.local/bin
+if [[ -z '$SSHKEY' ]]
+then SSHKEY='$HOME/.ssh/id_rsa'
+fi
+echo What directory do you want this script stored in? DEFAULT: ~/.local/bin/ 
+read STORE
+if [[ -z '$STORE' ]]
+then STORE='$HOME/.local/bin/' ]]
+fi
+if [[ ! -d '$STORE' ]]
+then mkdir -p $STORE
 fi
 echo "#!/bin/bash
 if [[ -z '\$1' ]]
@@ -65,8 +73,8 @@ else
         read -n1 s 2> /dev/null
         ssh $SSO@cbast.\$REGION.corp.rackspace.net -i $SSHKEY
 fi
-" > $HOME/.local/bin/bastion
-chmod +x $HOME/.local/bin/bastion
+" > $STORE/bastion
+chmod +x $STORE/bastion
 if [ ! -f ~/.ssh/config ]
 then :
 else mv -i ~/.ssh/config ~/.ssh/config.bak1
@@ -144,6 +152,6 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> $HOME/.ssh/config
-echo "Complete. Make sure '~/.local/bin/' is in your \$PATH. If it's not, run the following command: 
+echo "Complete. Make sure '$STORE' is in your \$PATH. If it's not, run the following command: 
 
-\"echo 'PATH=\$PATH:$HOME/.local/bin' >> $HOME/.bashrc ; source $HOME/.bashrc\""
+\"echo 'PATH=\$PATH:$STORE' >> $HOME/.bashrc ; source $HOME/.bashrc\""
