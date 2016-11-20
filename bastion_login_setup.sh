@@ -25,7 +25,7 @@ read STORE
 if [[ $STORE = "" ]]
 then STORE=$HOME/.local/bin/ 
 fi
-ehco ""
+echo ""
 echo "Script will be stored in $STORE"
 echo ""
 echo ""
@@ -66,7 +66,7 @@ Available regions:
 iad, dfw, ord, hkg, syd, lon3, lon5\" ; exit
 elif [[ \$1 = '-h' ]]
 then 
-        ehco \"Usage: 
+        echo \"Usage: 
 'bastion' will log you into the dfw bastion. 
 'bastion <region>' will log you into the specified bastion. 
 Available regions: 
