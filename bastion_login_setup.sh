@@ -144,4 +144,6 @@ Host cbast.syd2.corp.rackspace.net
     TCPKeepAlive yes
     ServerAliveInterval 300
 " >> $HOME/.ssh/config
-echo "Complete. Make sure '~/.local/bin/' is in your PATH"
+echo "Complete. Make sure '~/.local/bin/' is in your \$PATH. If it's not, run the following command: 
+
+\"echo 'PATH=\$PATH:$HOME/.local/bin' >> $HOME/.bashrc ; source $HOME/.bashrc\""
