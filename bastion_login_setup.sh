@@ -20,10 +20,10 @@ echo ""
 echo "ssh key location set to $SSHKEY"
 echo ""
 echo ""
-echo "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" 
+echo "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin" 
 read STORE
 if [[ $STORE = "" ]]
-then STORE=$HOME/.local/bin/ 
+then STORE=$HOME/.local/bin 
 fi
 echo ""
 echo "Script will be stored in $STORE"
