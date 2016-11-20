@@ -13,7 +13,7 @@ if [[ ! -d '$HOME/.local/bin' ]]
 then mkdir -p $HOME/.local/bin
 fi
 echo "#!/bin/bash
-if [[ -z "$1" ]]
+if [[ -z '\$1' ]]
 then 
         REGION=dfw1
 elif [[ \$1 = iad ]]
