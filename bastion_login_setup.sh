@@ -12,11 +12,13 @@ read SSHKEY
 if [[ -z '$SSHKEY' ]]
 then SSHKEY='$HOME/.ssh/id_rsa'
 fi
+echo $SSHKEY
 echo What directory do you want this script stored in? DEFAULT: ~/.local/bin/ 
 read STORE
 if [[ -z '$STORE' ]]
 then STORE='$HOME/.local/bin/' ]]
 fi
+echo $STORE
 if [[ ! -d '$STORE' ]]
 then mkdir -p $STORE
 fi
