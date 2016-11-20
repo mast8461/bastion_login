@@ -12,9 +12,9 @@ if [[ $SSHKEY = "" ]]
 then SSHKEY='$HOME/.ssh/id_rsa'
 fi
 echo $SSHKEY
-read -p  "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" STORE
+read -p "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" STORE
 if [[ $STORE = "" ]]
-then STORE='$HOME/.local/bin/' ]]
+then STORE='$HOME/.local/bin/' 
 fi
 echo $STORE
 if [[ ! -d '$STORE' ]]
