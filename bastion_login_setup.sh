@@ -9,17 +9,16 @@ echo What is your sso username?
 read SSO
 read -p "Where is your bastion SSH key? Press ENTER for DEFAULT: ~/.ssh/id_rsa" SSHKEY
 if [[ $SSHKEY = "" ]]
-then SSHKEY='~/.ssh/id_rsa'
+then SSHKEY=$HOME/.ssh/id_rsa
 fi
 echo $SSHKEY
 read -p "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" STORE
 if [[ $STORE = "" ]]
-then STORE='~/.local/bin/' 
+then STORE=$HOME/.local/bin/ 
 fi
 echo $STORE
 if [[ ! -d '$STORE' ]]
 then mkdir -p $STORE
-else echo wtf
 fi
 echo "#!/bin/bash
 if [[ -z '\$1' ]]
