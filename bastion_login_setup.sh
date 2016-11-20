@@ -71,6 +71,9 @@ if [ ! -f ~/.ssh/config ]
 then :
 else mv -i ~/.ssh/config ~/.ssh/config.bak1
 fi
+if [[ ! -d '$HOME/.ssh' ]]
+then mkdir -p $HOME/.ssh
+fi
 echo "Host cbast.dfw1.corp.rackspace.net
     ForwardAgent yes
     ForwardX11Trusted yes
@@ -140,5 +143,5 @@ Host cbast.syd2.corp.rackspace.net
     HashKnownHosts no
     TCPKeepAlive yes
     ServerAliveInterval 300
-" >> ~/.ssh/config
+" >> $HOME/.ssh/config
 echo "Complete. Make sure '~/.local/bin/' is in your PATH"
