@@ -7,16 +7,26 @@ else
 fi
 echo What is your sso username? 
 read SSO
+echo ""
+echo "SSO set as $SSO"
+echo ""
+echo ""
 read -p "Where is your bastion SSH key? Press ENTER for DEFAULT: ~/.ssh/id_rsa" SSHKEY
 if [[ $SSHKEY = "" ]]
 then SSHKEY=$HOME/.ssh/id_rsa
 fi
-echo $SSHKEY
+echo ""
+echo "ssh key location set to $SSHKEY"
+echo ""
+echo ""
 read -p "What directory do you want this script stored in? Press ENTER for DEFAULT: ~/.local/bin/" STORE
 if [[ $STORE = "" ]]
 then STORE=$HOME/.local/bin/ 
 fi
-echo $STORE
+ehco ""
+echo "Script will be stored in $STORE"
+echo ""
+echo ""
 if [[ ! -d '$STORE' ]]
 then mkdir -p $STORE
 fi
